@@ -6,5 +6,5 @@ import ru.alekseytimko.tgBot.entity.Category;
 
 @RepositoryRestResource(collectionResourceRel = "categories", path = "categories")
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    //Category findByName(String name);
+    Category findByName(String name);
 }
