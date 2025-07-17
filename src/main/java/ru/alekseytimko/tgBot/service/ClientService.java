@@ -1,6 +1,5 @@
 package ru.alekseytimko.tgBot.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import ru.alekseytimko.tgBot.entity.ClientOrder;
 import ru.alekseytimko.tgBot.entity.Product;
 
