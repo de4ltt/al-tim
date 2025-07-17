@@ -4,6 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import ru.alekseytimko.tgBot.entity.Product;
 
+import java.util.List;
+
 @RepositoryRestResource(collectionResourceRel = "products", path = "products")
 public interface ProductRepository extends JpaRepository<Product, Long> {
+    List<Product> findProductsByCategoryId(Long id);
 }
