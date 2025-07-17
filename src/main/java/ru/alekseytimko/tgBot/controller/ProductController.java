@@ -1,5 +1,6 @@
 package ru.alekseytimko.tgBot.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,11 +14,8 @@ import java.util.List;
 @RequestMapping("/rest/products")
 public class ProductController {
 
-    private final EntitiesService entitiesService;
-
-    public ProductController(EntitiesService entitiesService) {
-        this.entitiesService = entitiesService;
-    }
+    @Autowired
+    private EntitiesService entitiesService;
 
     @GetMapping(value = "/search", params = "categoryId")
     List<Product> getProductsByCategoryId(@RequestParam Long categoryId) {

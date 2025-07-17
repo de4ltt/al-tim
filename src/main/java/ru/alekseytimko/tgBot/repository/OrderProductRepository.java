@@ -18,12 +18,13 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Long
             """)
     List<Product> findProductsByClientId(@Param("clientId") Long clientId);
 
-    @Query("""
-                SELECT op.product
-                FROM OrderProduct op
-                GROUP BY op.product
-                ORDER BY SUM(op.countProduct) DESC
-                LIMIT = :limit
-            """)
+    @Query(value = """
+                SELECT p.*
+                FROM order_product op
+                JOIN product p ON op.product_id = p.id
+                GROUP BY op.product_id
+                ORDER BY SUM(op.count_product) DESC
+                LIMIT :limit
+            """, nativeQuery = true)
     List<Product> findTopPopularProducts(@Param("limit") Integer limit);
 }

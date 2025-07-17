@@ -1,5 +1,6 @@
 package ru.alekseytimko.tgBot.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.alekseytimko.tgBot.entity.ClientOrder;
 import ru.alekseytimko.tgBot.entity.Product;
@@ -11,11 +12,8 @@ import java.util.List;
 @RequestMapping("/rest/clients")
 public class ClientController {
 
-    private final EntitiesService entitiesService;
-
-    public ClientController(EntitiesService entitiesService) {
-        this.entitiesService = entitiesService;
-    }
+    @Autowired
+    private EntitiesService entitiesService;
 
     @GetMapping("/{id}/orders")
     List<ClientOrder> getClientOrders(@PathVariable Long id) {
