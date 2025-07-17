@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.alekseytimko.tgBot.entity.Product;
 import ru.alekseytimko.tgBot.service.EntitiesService;
+import ru.alekseytimko.tgBot.service.ProductService;
 
 import java.util.List;
 
@@ -15,15 +16,15 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private EntitiesService entitiesService;
+    private ProductService productService;
 
     @GetMapping(value = "/search", params = "categoryId")
     List<Product> getProductsByCategoryId(@RequestParam Long categoryId) {
-        return entitiesService.getProductsByCategoryId(categoryId);
+        return productService.getProductsByCategoryId(categoryId);
     }
 
     @GetMapping(value = "/popular", params = "limit")
     List<Product> getTopPopularProducts(@RequestParam Integer limit) {
-        return entitiesService.getTopPopularProducts(limit);
+        return productService.getTopPopularProducts(limit);
     }
 }
