@@ -1,6 +1,7 @@
 package ru.alekseytimko.tgBot.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -27,4 +28,12 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Long
                 LIMIT :limit
             """, nativeQuery = true)
     List<Product> findTopPopularProducts(@Param("limit") Integer limit);
+
+    OrderProduct findByClientOrderAndProduct(ClientOrder clientOrder, Product product);
+
+    @Query("""
+            SELECT op.product FROM OrderProduct op
+            WHERE op.clientOrder = :clientOrder
+            """)
+    List<Product> findProductsByClientOrder(@Param("clientOrder") ClientOrder clientOrder);
 }

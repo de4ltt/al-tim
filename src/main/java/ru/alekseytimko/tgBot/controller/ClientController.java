@@ -13,8 +13,12 @@ import java.util.List;
 @RequestMapping("/rest/clients")
 public class ClientController {
 
+    private final ClientService clientService;
+
     @Autowired
-    private ClientService clientService;
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
+    }
 
     @GetMapping("/{id}/orders")
     List<ClientOrder> getClientOrders(@PathVariable Long id) {
